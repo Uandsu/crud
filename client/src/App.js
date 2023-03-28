@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './App.css';
+import Axios from "axio"; 
 
 function App() {
   const [values, setValues] = useState();
@@ -12,7 +13,13 @@ function App() {
   };
 
   const handleClickButton = () => {
-    console.log(values);
+    Axios.post("http://localhost:3001/register",{
+      name: values.name,
+      cost: values.cost,
+      model: values.model,
+    }).then((response)=>{
+      console.log(response);
+    })
   };
 
 
@@ -36,8 +43,8 @@ function App() {
         />
         <input 
         type="text" 
-        name="category" 
-        placeholder="Categoria" 
+        name="model" 
+        placeholder="Modelo" 
         className="register--input"
         onChange={handleChangeValues}
         />
